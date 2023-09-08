@@ -9,15 +9,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <nav className='items-center'>
-        <Link href="/">
-          Home
-        </Link>
-        <Link href="/posts">
-          Posts
-        </Link>
-      </nav>
-        {children}</body>
+        <nav>
+          <Link href="/">
+            Home
+          </Link>
+          <Link href="/posts">
+            Posts
+          </Link>
+        </nav>
+        {children}
+      </body>
     </html>
   )
 }
