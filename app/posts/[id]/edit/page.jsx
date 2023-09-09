@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/dist/server/api-utils";
+
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function BlogEditPage({searchParams}){
     // console.log(searchParams);
@@ -32,6 +33,7 @@ export default async function BlogEditPage({searchParams}){
             },
             body: JSON.stringify({ content: formData.get('content') })
         })
+        // redirect(`/posts/${id}`);
         redirect(`/posts/${id}`);
     }
 
