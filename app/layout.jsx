@@ -9,12 +9,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <nav className='fixed left-0 top-5'>
           <Link href="/">
             Home
-          </Link>
-          <Link href="/posts">
-            Posts
           </Link>
         </nav>
         {children}

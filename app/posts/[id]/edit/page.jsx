@@ -12,7 +12,7 @@ export default async function BlogEditPage({searchParams}){
 
     async function updatePost(formData) {
         "use server"
-        // console.log('formdata', formData.get('content'));
+        console.log('formdata', formData.get('content'));
         await fetch(`http://localhost:3030/posts/${id}`, {
             method: 'PATCH',
             headers: {
@@ -44,31 +44,55 @@ export default async function BlogEditPage({searchParams}){
             </Link>
             <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
                 <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-3xl font-bold text-black">{title}</h1>
+                    <h1 className="text-3xl font-bold text-black">Edit Your Note</h1>
                 </div>
                 <div>
-                    <form action={updatePost}>
+                    <form className="flex flex-col gap-y-4" action={updatePost}>
+                        <input 
+                            className="border max-w-2xl rounded-lg p-2 text-black" 
+                            type="text" 
+                            placeholder="Title" 
+                            name="title"
+                            defaultValue={title}
+                            required
+                            maxLength={50}
+                    />
+                        <input 
+                            className="border max-w-2xl rounded-lg p-2 text-black" 
+                            type="text" 
+                            placeholder="Description" 
+                            name="description" 
+                            defaultValue={description}
+                            required
+                            maxLength={100}
+                    />
                         <textarea 
-                            className="w-full p-2 rounded border text-black" 
-                            defaultValue={content} name="content"
+                            className="border max-w-2xl rounded-lg p-2 w-full text-black h-40 resize-y" 
+                            rows="8"
+                            defaultValue={content} 
+                            name="content" 
+                            required 
+                            minLength="10"
                         />
-                        <Link 
-                            // onClick={() => setIsEditing(!isEditing)} 
-                            href={`/posts/${id}`}
-                            className="bg-slate-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
-                        >
-                            Cancel
-                        </Link>
-                        <button type='submit'
-                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
-                        >
-                            Save
-                        </button>
-                        <button formAction={updateAndGoBack} type='submit'
-                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
-                        >
-                            Save and return
-                        </button>
+                        <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-2">
+    <Link 
+        href={`/posts/${id}`}
+        className="bg-gray-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-gray-700 transition-colors duration-300 mb-2 sm:mb-0"
+    >
+        Cancel
+    </Link>
+    <button type='submit'
+        className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300 mb-2 sm:mb-0"
+    >
+        Save
+    </button>
+    <button formAction={updateAndGoBack} type='submit'
+        className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300"
+    >
+        Save and return
+    </button>
+</div>
+                        
                     </form>
                 </div>
             </div>
