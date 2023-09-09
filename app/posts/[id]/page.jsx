@@ -1,56 +1,46 @@
 'use client'
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-export default function PostPage({ params }) {
-    const [note, setNote] = useState(null);
-    const [isEditing, setIsEditing] = useState(false);
-    const [content, setContent] = useState('');
-    const router = useRouter();
-    useEffect(() => {
-        async function fetchNote() {
-            const res = await fetch(`http://localhost:3030/posts/${params.id}`);
-            const data = await res.json();
-            setNote(data);
-            setContent(data.content);
-        }
-        
-        fetchNote();
-    }, [params.id]);
+import Link from 'next/link';
 
-    if (!note) {
-        return <div>Loading...</div>;
-    }
+async function getNote(noteId) {
+    const res = await fetch(`http://localhost:3030/posts/${noteId}`);
+    const data = await res.json();
+    return data;
+}
 
+const deletePost = async () => {
+    console.log('delete function called');
+    fetch(`http://localhost:3030/posts/${params.id}`, {
+        method: 'DELETE'
+    }).then(() => router.replace('/'));
+}
+
+export default async function PostPage({ params }) {
+    const note = await getNote(params.id);
     return (
         <div className="container mx-auto p-4">
-            <button className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition" onClick={() => router.back()}>Back</button>
+            <Link href="/" className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition" >
+                Back
+            </Link>
             <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
                 <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-3xl font-bold text-black">NOTES {note.title}</h1>
-                    <button 
-                        onClick={() => setIsEditing(!isEditing)} 
+                    <h1 className="text-3xl font-bold text-black">{note.title}</h1>
+                    <Link href={
+                        {
+                            pathname: `/posts/${params.id}/edit`,
+                            query:{...note}
+                    }}
                         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
                     >
                         Edit
-                    </button>
-                </div>
-                {isEditing ? (
-                    <div>
-                    <textarea 
-                        className="w-full p-2 rounded border" 
-                        value={content} 
-                        onChange={(e) => setContent(e.target.value)}
-                    />
+                    </Link>
                     <button 
-                        onClick={() => setIsEditing(!isEditing)} 
+                        onClick={deletePost} 
                         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
                     >
-                        Cancel
+                        Delete
                     </button>
-                    </div>
-                ) : (
-                    <p className="text-gray-700 text-lg">{content}</p>
-                )}
+                </div>  
+                    <p className="text-gray-700 text-lg">{note.content}</p>
             </div>
         </div>
     );

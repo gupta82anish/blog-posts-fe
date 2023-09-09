@@ -1,6 +1,6 @@
 import Link from "next/link";
 async function getPosts() {
-    const res = await fetch('http://localhost:3030/posts', {cache: 'no-store'});
+    const res = await fetch('http://localhost:3030/posts');
     const data = await res.json();
     return data?.data;
   }
@@ -10,15 +10,14 @@ export default async function PostsList(){
     console.log(posts);
     return (
         <div className="container mx-auto p-4">
-          <h1 className="text-center text-2xl font-bold mb-4">Posts are here</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {posts?.map((post) => (
-              <Post key={post.id} post={post} />
-              ))}
-          </div>
-          {/* <CreatePost /> */}
-          <Link className="top-50 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
-            href="/posts/addBlogPost">Write Something Good</Link>
+        <h1 className="text-center text-2xl font-bold mb-4">Posts are here</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {posts?.map((post) => (
+            <Post key={post.id} post={post} />
+            ))}
+        </div>
+        {/* <CreatePost /> */}
+
         </div>
     );
 }

@@ -3,11 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreatePost() {
-    // const [title, setTitle] = useState('');
-    // const [content, setContent] = useState('');
-    // const [description, setDescription] = useState('');
-
+export default function AddBlogPost() {
     const [form, setForm] = useState({
         title: '',
         description: '',
@@ -28,15 +24,12 @@ export default function CreatePost() {
             })
         })
 
-        // setContent('');
-        // setTitle('');
-        // setDescription('');
         setForm({
             title: '',
             description: '',
             content: ''
         });
-        router.refresh();
+        router.replace('/');
     }
 
     const handleChange = (e) => {
@@ -68,4 +61,3 @@ export default function CreatePost() {
         </form>
     )
 }
-
