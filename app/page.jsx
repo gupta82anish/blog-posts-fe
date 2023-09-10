@@ -1,13 +1,12 @@
 import Link from "next/link";
 async function getPosts() {
-    const res = await fetch('http://localhost:3030/posts', {cache: 'no-store'});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {cache: 'no-store'});
     const data = await res.json();
     return data?.data;
   }
   
 export default async function PostsList(){
     const posts = await getPosts();
-    console.log(posts);
     return (
         <div className="container mx-auto p-4">
           <h1 className="text-center text-2xl md:text-3xl font-bold mb-4">Posts are here</h1>

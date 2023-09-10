@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export default async function BlogEditPage({searchParams}){
     // console.log(searchParams);
-    
+    console.log('sssss')
     const {
         id, title, description, content
     } = searchParams;
@@ -38,7 +38,7 @@ export default async function BlogEditPage({searchParams}){
     }
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 pt-16 md:pt-4">
             <Link href="/" className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition" >
                 Back
             </Link>
@@ -75,23 +75,23 @@ export default async function BlogEditPage({searchParams}){
                             minLength="10"
                         />
                         <div className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-2">
-    <Link 
-        href={`/posts/${id}`}
-        className="bg-gray-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-gray-700 transition-colors duration-300 mb-2 sm:mb-0"
-    >
-        Cancel
-    </Link>
-    <button type='submit'
-        className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300 mb-2 sm:mb-0"
-    >
-        Save
-    </button>
-    <button formAction={updateAndGoBack} type='submit'
-        className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300"
-    >
-        Save and return
-    </button>
-</div>
+                            <Link 
+                                href={`/posts/${id}`}
+                                className="bg-gray-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-gray-700 transition-colors duration-300 mb-2 sm:mb-0"
+                            >
+                                Cancel
+                            </Link>
+                            <button type='submit'
+                                className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300 mb-2 sm:mb-0"
+                            >
+                                Save
+                            </button>
+                            <button formAction={updateAndGoBack} type='submit'
+                                className="bg-blue-500 text-white py-2 px-2 sm:px-4 w-full sm:w-auto text-center rounded hover:bg-blue-700 transition-colors duration-300"
+                            >
+                                Save and return
+                            </button>
+                        </div>
                         
                     </form>
                 </div>

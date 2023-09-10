@@ -18,7 +18,7 @@ export default function CreatePost() {
 
     const createPost = async () => {
 
-        await fetch('http://localhost:3030/posts', {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
