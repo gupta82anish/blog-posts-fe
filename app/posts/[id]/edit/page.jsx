@@ -5,8 +5,7 @@ import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 export default async function BlogEditPage({searchParams}){
-    // console.log(searchParams);
-    console.log('sssss')
+
     const {
         id, title, description, content
     } = searchParams;
@@ -45,7 +44,7 @@ export default async function BlogEditPage({searchParams}){
             </Link>
             <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
                 <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-3xl font-bold text-black">Edit Your Note</h1>
+                    <h1 className="text-3xl font-bold text-black">Edit Your Note here</h1>
                 </div>
                 <div>
                     <form className="flex flex-col gap-y-4" action={updatePost}>
