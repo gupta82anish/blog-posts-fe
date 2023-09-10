@@ -13,7 +13,7 @@ export default async function BlogEditPage({searchParams}){
     async function updatePost(formData) {
         "use server"
         console.log('formdata', formData.get('content'));
-        await fetch(`http://localhost:3030/posts/${id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export default async function BlogEditPage({searchParams}){
 
     async function updateAndGoBack(formData) {
         "use server"
-        await fetch(`http://localhost:3030/posts/${id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
