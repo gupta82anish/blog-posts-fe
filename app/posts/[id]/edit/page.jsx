@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
 export default async function BlogEditPage({searchParams}){
     // console.log(searchParams);
     console.log('sssss')
