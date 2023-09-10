@@ -1,3 +1,6 @@
+## Hosted on Vercel
+https://blog-posts-fe-hc4m.vercel.app
+
 ## Next.JS , React and Tailwind CSS
 All three of these technologies are totally new to me, so after reading a lot of docs, watching a lot of youtube videos and experimenting, I think this is the best I could do with my current understanding of these technologies.
 I wanted to try to follow the guidelines of NextJS as much as I could but that documentation is a bit unclear and confusing at times. I still don't have a complete understanding of all the use cases of react hooks, and I still need to learn some more fundamental rules and behaviours of React. 
